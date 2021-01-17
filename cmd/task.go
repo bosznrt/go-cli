@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"os"
 	"program"
 	"strconv"
@@ -14,11 +15,18 @@ func main() {
 	var age string
 	var iAge int
 
-	if len(os.Args) > 2 {
+	if len(os.Args) > 2 && operation == "add" {
 		tempName := strings.Split(os.Args[2], "=")
+		if tempName[0] != "name" {
+			log.Fatalf("Error : Invalid argument unexpected name")
+		}
 		name = tempName[1]
 		tempAge := strings.Split(os.Args[3], "=")
+		if tempAge[0] != "age" {
+			log.Fatalf("Error : Invalid argument unexpected age")
+		}
 		age = tempAge[1]
+
 		iAge, _ = strconv.Atoi(age)
 	}
 
